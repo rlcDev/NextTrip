@@ -1,0 +1,33 @@
+{
+  "forms": {
+    "trip": {
+      "submit": "Submit",
+      "cancel": "Cancel"
+    },
+    "location": {
+      "departure": "Departure",
+      "arrival": "Arrival",
+      "place": "Place",
+      "searchAirport": "Search for an airport",
+      "date": "Date",
+      "time": "Time",
+      "zone": "UTC zone",
+      "zonePlaceHolder": "Europe/Paris"
+    },
+    "details": {
+      "details": "Details",
+      "cabinCategory": "Cabin Category",
+      "marketingFlightId": "Marketing flight identifier",
+      "operatorFlightId": "Operator flight identifier",
+      "marketingAirline": "Marketing airline",
+      "operatingAirline": "Operation airline",
+      "transportation": "Transportation",
+      "transportationInitialValue": "Select a transportation",
+      "bookingClass": "Booking class",
+      "cabinClass": "Cabin class",
+      "plane": "Plane",
+      "train": "Train",
+      "bus": "Bus"
+    }
+  }
+}

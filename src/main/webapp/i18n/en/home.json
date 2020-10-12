@@ -1,19 +1,10 @@
 {
   "home": {
-    "title": "Welcome, Java Hipster!",
-    "subtitle": "This is your homepage",
+    "title": "Feasy - Next trip",
+    "nextTrip": "Your next trip",
+    "confirmation": "Send your booking confirmation email to <a href=\"mailto:me@getfeasy.com?subject=Confirmation email\">me@getfeasy.com</a>, so that we can make your trip freaking easy",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
-    },
-    "question": "If you have any question on JHipster:",
-    "link": {
-      "homepage": "JHipster homepage",
-      "stackoverflow": "JHipster on Stack Overflow",
-      "bugtracker": "JHipster bug tracker",
-      "chat": "JHipster public chat room",
-      "follow": "follow @jhipster on Twitter"
-    },
-    "like": "If you like JHipster, don't forget to give us a star on",
-    "github": "GitHub"
+    }
   }
 }

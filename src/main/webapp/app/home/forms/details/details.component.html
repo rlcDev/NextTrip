@@ -1,0 +1,68 @@
+<form class="form" role="form" [formGroup]="parentForm">
+    <div class="m-2">
+        <h5 jhiTranslate="forms.details.details">Details</h5>
+        <div class="form-group">
+            <label for="cabin-category" jhiTranslate="forms.details.cabinCategory">Cabin category</label>
+            <input type="text" class="form-control" name="cabinCategory" id="cabin-category"
+                placeholder="{{ 'forms.details.cabinCategory' | translate }}" formControlName="cabinCategory">
+        </div>
+        <div class="form-group">
+            <label for="marketing-flight-id" jhiTranslate="forms.details.marketingFlightId">Marketing flight
+                identifier</label>
+            <input type="text" class="form-control" name="marketingFlightId" id="marketing-flight-id"
+                placeholder="{{ 'forms.details.marketingFlightId' | translate }}" formControlName="marketingFlightId">
+        </div>
+        <div class="form-group">
+            <label for="operator-flight-id" jhiTranslate="forms.details.operatorFlightId">Operation flight
+                identifier</label>
+            <input type="text" class="form-control" name="operatorFlightId" id="operator-flight-id"
+                placeholder="{{ 'forms.details.operatorFlightId' | translate }}" formControlName="operatorFlightId">
+        </div>
+        <div class="row">
+            <div class="col-md-auto">
+                <div class="form-group">
+                    <label for="marketing-airline" jhiTranslate="forms.details.marketingAirline">Marketing
+                        airline</label>
+                    <input type="text" class="form-control" name="marketingAirline" id="marketing-airline"
+                        placeholder="{{ 'forms.details.marketingAirline' | translate }}"
+                        formControlName="marketingAirline">
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="form-group">
+                    <label for="operating-airline" jhiTranslate="forms.details.operatingAirline">Operating
+                        airline</label>
+                    <input type="text" class="form-control" name="operatingAirline" id="operating-airline"
+                        placeholder="{{ 'forms.details.operatingAirline' | translate }}"
+                        formControlName="operatingAirline">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-auto">
+                <div class="form-group">
+                    <label for="transportation" jhiTranslate="forms.details.transportation">Transportation</label>
+                    <select class="form-control" id="transportation" name="transportation" formControlName="transportation">
+                        <option *ngFor="let transport of transports" [value]="transport">{{ transport | translate }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="form-group">
+                    <label for="booking-class" jhiTranslate="forms.details.bookingClass">Booking Class</label>
+                    <input type="text" class="form-control" name="bookingClass" id="booking-class"
+                        placeholder="{{ 'forms.details.bookingClass' | translate }}" formControlName="bookingClass">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-auto">
+                <div class="form-group">
+                    <label for="cabin-class" jhiTranslate="forms.details.cabinClass">Cabin Class</label>
+                    <input type="text" class="form-control" name="cabinClass" id="cabin-class"
+                        placeholder="{{ 'forms.details.cabinClass' | translate }}" formControlName="cabinClass">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -23,9 +23,16 @@ import { ErrorComponent } from './layouts/error/error.component';
     NextTripHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     NextTripEntityModule,
-    NextTripAppRoutingModule
+    NextTripAppRoutingModule,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
-  bootstrap: [MainComponent]
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent
+  ],
+  bootstrap: [ MainComponent ]
 })
 export class NextTripAppModule {}

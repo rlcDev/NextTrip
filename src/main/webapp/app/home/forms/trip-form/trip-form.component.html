@@ -1,0 +1,9 @@
+<form class="form" (ngSubmit)="submit()" role="form" [formGroup]="tripForm">
+    <jhi-location-form [location]="'departure'" [parentForm]="tripForm"></jhi-location-form>
+    <jhi-location-form [location]="'arrival'" [parentForm]="tripForm"></jhi-location-form>
+    <jhi-details-form [transports]="transports" [parentForm]="tripForm"></jhi-details-form>
+    <div class="float-right m-1">
+        <button type="button" class="btn bg-light" jhiTranslate="forms.trip.cancel" (click)="sideNavParent.toggle()">Cancel</button>
+        <button type="submit" class="btn bg-warning" jhiTranslate="forms.trip.submit">Submit</button>
+    </div>
+</form>

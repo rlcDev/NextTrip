@@ -1,0 +1,33 @@
+{
+  "forms": {
+    "trip": {
+      "submit": "Soumettre",
+      "cancel": "Annuler"
+    },
+    "location": {
+      "departure": "Départ",
+      "arrival": "Arrivé",
+      "place": "Lieu",
+      "searchAirport": "Sélectionner un aéroport",
+      "date": "Date",
+      "time": "Heure",
+      "zone": "Zone UTC",
+      "zonePlaceHolder": "Europe/Paris"
+      },
+    "details": {
+      "details": "Détails",
+      "cabinCategory": "Catégorie de cabine",
+      "marketingFlightId": "Identifiant marketing du vol",
+      "operatorFlightId": "Identifiant du vol de l'exploitant",
+      "marketingAirline": "Compagnie aérienne commercialisant",
+      "operatingAirline": "Compagnie aérienne opérant",
+      "transportation": "Moyen de transport",
+      "transportationInitialValue": "Sélectionner un moyen de transport",
+      "bookingClass": "Classe de réservation",
+      "cabinClass": "Classe",
+      "plane": "Avion",
+      "train": "Train",
+      "bus": "Bus"
+    }
+  }
+}

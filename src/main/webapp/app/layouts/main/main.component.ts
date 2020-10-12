@@ -9,7 +9,7 @@ import { AccountService } from 'app/core/auth/account.service';
   selector: 'jhi-main',
   templateUrl: './main.component.html'
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit{
   private renderer: Renderer2;
 
   constructor(
@@ -57,4 +57,5 @@ export class MainComponent implements OnInit {
     }
     this.translateService.get(pageTitle).subscribe(title => this.titleService.setTitle(title));
   }
+
 }

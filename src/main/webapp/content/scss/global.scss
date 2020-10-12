@@ -193,3 +193,30 @@ ui bootstrap tweaks
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */
+
+.nav-container {
+  background-color: white;
+  width: 40%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.float-btn {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 3rem;
+  border: none;
+  outline: none;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: white;
+  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 0rem;
+  width: 100%;
+}
