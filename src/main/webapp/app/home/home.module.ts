@@ -11,6 +11,7 @@ import { HomeComponent } from './home.component';
 import { LocationFormComponent } from './forms/location-form/location-form.component';
 import { TripFormComponent } from './forms/trip-form/trip-form.component';
 import { DetailsFormComponent } from './forms/details/details.component';
+import { TripItemComponent } from './views/trip-item/trip-item.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { DetailsFormComponent } from './forms/details/details.component';
     HomeComponent,
     LocationFormComponent,
     TripFormComponent,
-    DetailsFormComponent
+    DetailsFormComponent,
+    TripItemComponent
   ]
 })
 export class NextTripHomeModule { }

@@ -6,7 +6,6 @@ import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { Login } from 'app/core/login/login.model';
-import { Trip } from '../../shared/objects/trip.objectmodel';
 
 type JwtToken = {
   id_token: string;
@@ -26,16 +25,6 @@ export class AuthServerProvider {
       .pipe(map(response => this.authenticateSuccess(response, credentials.rememberMe)));
   }
 
-  /**
-   *
-   * @param trip
-   */
-  createTrip(trip: Trip): Observable<void> {
-    return this.http
-      .post<string>(SERVER_API_URL + 'api/createTrip', { trip: trip, token: this.getAuthenticationToken()})
-      .pipe(map(response => this.createTripSuccess(response)));
-  }
-
   logout(): Observable<void> {
     return new Observable(observer => {
       this.$localStorage.clear('authenticationToken');
@@ -51,21 +40,5 @@ export class AuthServerProvider {
     } else {
       this.$sessionStorage.store('authenticationToken', jwt);
     }
-  }
-
-  /**
-   * Success trip call handler
-   * @param response
-   */
-  private createTripSuccess(response: string): void {
-
-  }
-
-  /**
-   * Get Authentication token
-   * @returns Authentication token
-   */
-  private getAuthenticationToken(): string {
-    return this.$localStorage.retrieve('authenticationToken');
   }
 }

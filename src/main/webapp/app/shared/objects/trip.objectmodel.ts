@@ -3,10 +3,12 @@ export class Trip {
     departureDate:  string;
     departureTime:  string;
     departureZone:  string;
+
     arrivalPlace:  string;
     arrivalDate:  string;
     arrivalTime:  string;
     arrivalZone:  string;
+
     cabinClass:  string
 
     cabinCategory?: string;

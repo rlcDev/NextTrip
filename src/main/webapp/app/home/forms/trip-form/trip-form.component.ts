@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TRANSPORTS } from '../../../shared/constants/form.constant';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -9,7 +9,7 @@ import { TripService } from '../../../core/trip/trip.service';
   templateUrl: './trip-form.component.html',
 })
 export class TripFormComponent {
-  @Input() sideNavParent: MatSidenav;
+  @Input() sideNavParent!: MatSidenav;
   transports = TRANSPORTS;
 
   tripForm: FormGroup = this.fb.group({
@@ -31,7 +31,7 @@ export class TripFormComponent {
     cabinClass: ['', Validators.required]
   })
 
-  constructor(private fb: FormBuilder, private tripService: TripService) { }
+  constructor(private fb: FormBuilder, private tripService: TripService) {}
 
   /**
    * Create a trip on submit
@@ -40,7 +40,20 @@ export class TripFormComponent {
     this.tripForm.markAsDirty();
     if (this.tripForm.valid) {
       const TRIP = this.tripService.convert(this.tripForm.value);
-      this.tripService.createTrip(TRIP);
+      this.tripService.createTrip(TRIP).subscribe(() => {
+        this.handleSuccessfulCreation();
+      });
     }
+  }
+
+  /**
+   * Handle successful
+   * TODO error case
+   * proper alert
+   * @param obj
+   */
+  private handleSuccessfulCreation(): void {
+    this.sideNavParent.toggle();
+    alert('OK')
   }
 }

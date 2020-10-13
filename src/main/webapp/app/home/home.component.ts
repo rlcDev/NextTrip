@@ -3,6 +3,8 @@ import { LoginModalService } from '../core/login/login-modal.service';
 import { Subscription } from 'rxjs';
 import { AccountService } from '../core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
+import { TripService } from '../core/trip/trip.service';
+import { Trip } from '../shared/objects/trip.objectmodel';
 
 @Component({
   selector: 'jhi-home',
@@ -12,18 +14,35 @@ import { Account } from 'app/core/user/account.model';
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
-  trips = [];
+  retrieveSubscription?: Subscription;
+  newTripSubscription?: Subscription;
+  trips: Trip[] = [];
   showSideNav = false;
 
-  constructor(private accountService: AccountService, private loginModalService: LoginModalService) {}
+  constructor(private accountService: AccountService, private loginModalService: LoginModalService,
+    private tripService: TripService) { }
 
   ngOnInit(): void {
-    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
+    this.authSubscription = this.accountService.getAuthenticationState()
+      .subscribe(account =>
+        (this.account = account
+      )
+    );
+    this.retrieveSubscription = this.tripService.retrieveTrips()
+      .subscribe(_trips =>
+      (this.trips = _trips as Trip[])
+    );
   }
 
   ngOnDestroy(): void {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
+    }
+    if (this.retrieveSubscription) {
+      this.retrieveSubscription.unsubscribe();
+    }
+    if (this.newTripSubscription) {
+      this.newTripSubscription.unsubscribe();
     }
   }
 
@@ -35,3 +54,4 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loginModalService.open();
   }
 }
+

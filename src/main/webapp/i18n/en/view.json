@@ -1,0 +1,11 @@
+{
+  "view": {
+    "itemTrip": {
+      "flight": "Flight",
+      "date": "Date",
+      "departs": "Departs",
+      "departure": "Departure",
+      "arrival": "Arrival"
+    }
+  }
+}
