@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
 import { LoginService } from 'app/core/login/login.service';
+import { TripService } from '../../core/trip/trip.service';
 
 @Component({
   selector: 'jhi-login-modal',
@@ -21,7 +22,8 @@ export class LoginModalComponent implements AfterViewInit {
     rememberMe: [false]
   });
 
-  constructor(private loginService: LoginService, private router: Router, public activeModal: NgbActiveModal, private fb: FormBuilder) {}
+  constructor(private loginService: LoginService, private router: Router, public activeModal: NgbActiveModal,
+    private fb: FormBuilder, private tripService: TripService) {}
 
   ngAfterViewInit(): void {
     if (this.username) {
@@ -49,6 +51,7 @@ export class LoginModalComponent implements AfterViewInit {
         () => {
           this.authenticationError = false;
           this.activeModal.close();
+          this.tripService.onUpdateTrips.next(true);
           if (
             this.router.url === '/account/register' ||
             this.router.url.startsWith('/account/activate') ||

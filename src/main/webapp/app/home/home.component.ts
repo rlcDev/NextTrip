@@ -20,18 +20,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   showSideNav = false;
 
   constructor(private accountService: AccountService, private loginModalService: LoginModalService,
-    private tripService: TripService) { }
+    private tripService: TripService) {
+  }
 
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState()
       .subscribe(account =>
         (this.account = account)
       );
-    this.updateTrips();
-    this.refreshTripsSubscription = this.tripService.onNewTrip
+    this.refreshTripsSubscription = this.tripService.onUpdateTrips
       .subscribe((onTripAdded: boolean) => {
-        if( onTripAdded) {
-          this.updateTrips()
+        if (onTripAdded) {
+          this.updateTrips();
         }
       });
   }
@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
    */
   private updateTrips(): void {
     this.tripService.retrieveTrips()
-    .then((trips: Trip[]) => { this.trips = trips });
+      .then((trips: Trip[]) => { this.trips = trips });
   }
 
 }

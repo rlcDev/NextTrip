@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.feasy.domain.Trip;
 import com.feasy.repository.TripRepository;
+import com.feasy.repository.UserRepository;
+import com.feasy.security.SecurityUtils;
 import com.feasy.service.dto.TripDTO;
 import com.feasy.service.mapper.TripTripDTOMapper;
 import com.feasy.service.mapper.TripTripDTOMapperImpl;
-import com.feasy.web.rest.vm.LoginVM;
 
 /**
  * Service class to manage trips
@@ -26,8 +27,11 @@ public class TripService {
 
   private final TripTripDTOMapper tripDTOMapper;
 
-  public TripService(TripRepository tripRepository) {
+  private final UserRepository userRepository;
+
+  public TripService(TripRepository tripRepository, UserRepository userRepository) {
     this.tripRepository = tripRepository;
+    this.userRepository = userRepository;
     this.tripDTOMapper = new TripTripDTOMapperImpl();
   }
 
@@ -39,6 +43,8 @@ public class TripService {
   public Trip createTrip(TripDTO tripDTO) {
     log.debug("Convert and insert trip" + tripDTO);
     Trip trip = tripDTOMapper.tripDTOToTrip(tripDTO);
+    String userId = getCurrentUserId();
+    trip.setUserId(userId);
     tripRepository.insert(trip);
     return trip;
   }
@@ -50,7 +56,8 @@ public class TripService {
    */
   public List<TripDTO> getAllTrips() {
     log.debug("getAllTrips: retrieving all trips");
-    return convert(tripRepository.findAll());
+    String currentUserId = getCurrentUserId();
+    return convert(tripRepository.findAllByUserId(currentUserId));
   }
 
   /**
@@ -66,6 +73,21 @@ public class TripService {
       tripDTOList.add(tripDTOMapper.tripToTripDTO(trip));
     }
     return tripDTOList;
+  }
+
+  /**
+   * Get current user id
+   *
+   * @return user id
+   */
+  private String getCurrentUserId() {
+    log.debug("Get current user id");
+    final String[] userId = new String[1];
+    SecurityUtils.getCurrentUserLogin()
+        .flatMap(userRepository::findOneByLogin)
+        .ifPresent(user -> userId[0] = user.getId());
+
+    return userId[0];
   }
 
 }

@@ -8,10 +8,10 @@ import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class TripService {
-  public onNewTrip: Subject<boolean>;
+  public onUpdateTrips: Subject<boolean>;
 
   constructor(private http: HttpClient) {
-    this.onNewTrip = new Subject<boolean>();
+    this.onUpdateTrips = new Subject<boolean>();
   }
 
   /**

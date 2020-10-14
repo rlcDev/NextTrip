@@ -55,6 +55,6 @@ export class TripFormComponent {
   private handleSuccessfulCreation(): void {
     this.sideNavParent.toggle();
     alert('OK');
-    this.tripService.onNewTrip.next(true);
+    this.tripService.onUpdateTrips.next(true);
   }
 }

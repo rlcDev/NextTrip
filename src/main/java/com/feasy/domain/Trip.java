@@ -64,6 +64,10 @@ public class Trip extends AbstractAuditingEntity implements Serializable {
   @Size(max = 50)
   private String cabinClass;
 
+  @NotNull
+  @NotBlank
+  private String userId;
+
   private String cabinCategory;
 
   private String marketingFlightId;
@@ -206,6 +210,14 @@ public class Trip extends AbstractAuditingEntity implements Serializable {
     this.bookingClass = bookingClass;
   }
 
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -224,7 +236,7 @@ public class Trip extends AbstractAuditingEntity implements Serializable {
 
   @Override public String toString() {
     return "Trip{" +
-        ", departurePlace='" + departurePlace + '\'' +
+        "departurePlace='" + departurePlace + '\'' +
         ", departureDate='" + departureDate + '\'' +
         ", departureTime='" + departureTime + '\'' +
         ", departureZone='" + departureZone + '\'' +
@@ -233,6 +245,7 @@ public class Trip extends AbstractAuditingEntity implements Serializable {
         ", arrivalTime='" + arrivalTime + '\'' +
         ", arrivalZone='" + arrivalZone + '\'' +
         ", cabinClass='" + cabinClass + '\'' +
+        ", userId='" + userId + '\'' +
         ", cabinCategory='" + cabinCategory + '\'' +
         ", marketingFlightId='" + marketingFlightId + '\'' +
         ", operatorFlightId='" + operatorFlightId + '\'' +
