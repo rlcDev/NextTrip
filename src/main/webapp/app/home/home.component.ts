@@ -14,7 +14,7 @@ import { Trip } from '../shared/objects/trip.objectmodel';
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
-  retrieveSubscription?: Subscription;
+  refreshTripsSubscription?: Subscription;
   newTripSubscription?: Subscription;
   trips: Trip[] = [];
   showSideNav = false;
@@ -25,21 +25,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState()
       .subscribe(account =>
-        (this.account = account
-      )
-    );
-    this.retrieveSubscription = this.tripService.retrieveTrips()
-      .subscribe(_trips =>
-      (this.trips = _trips as Trip[])
-    );
+        (this.account = account)
+      );
+    this.updateTrips();
+    this.refreshTripsSubscription = this.tripService.onNewTrip
+      .subscribe((onTripAdded: boolean) => {
+        if( onTripAdded) {
+          this.updateTrips()
+        }
+      });
   }
 
   ngOnDestroy(): void {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
-    if (this.retrieveSubscription) {
-      this.retrieveSubscription.unsubscribe();
+    if (this.refreshTripsSubscription) {
+      this.refreshTripsSubscription.unsubscribe();
     }
     if (this.newTripSubscription) {
       this.newTripSubscription.unsubscribe();
@@ -53,5 +55,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   login(): void {
     this.loginModalService.open();
   }
+
+  /**
+   * Update trips
+   */
+  private updateTrips(): void {
+    this.tripService.retrieveTrips()
+    .then((trips: Trip[]) => { this.trips = trips });
+  }
+
 }
 

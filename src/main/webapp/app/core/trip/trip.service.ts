@@ -1,30 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { Trip } from '../../shared/objects/trip.objectmodel';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class TripService {
+  public onNewTrip: Subject<boolean>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.onNewTrip = new Subject<boolean>();
+  }
 
   /**
    * Post a new trip
    * @param trip
    * @returns Observable
    */
-  createTrip(trip: Trip): Observable<{}> {
-    return this.http.post(SERVER_API_URL + 'api/trips', trip);
+  createTrip(trip: Trip): Observable<Trip> {
+    return this.http
+      .post(SERVER_API_URL + 'api/trips', trip)
+      .pipe(
+        map(response => (response as Trip))
+      );
   }
 
   /**
    * Retrieve all trips
    * @returns Observable
    */
-  retrieveTrips(): Observable<{}> {
-    return this.http.get(SERVER_API_URL + 'api/trips');
+  retrieveTrips(): Promise<Trip[]> {
+    return this.http
+      .get(SERVER_API_URL + 'api/trips')
+      .pipe(
+        map(response => response as Trip[]))
+      .toPromise();
   }
 
   /**

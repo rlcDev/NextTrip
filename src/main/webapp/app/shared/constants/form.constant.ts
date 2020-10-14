@@ -1,3 +1,4 @@
 export const DEPARTURE = 'departure';
 export const ARRIVAL = 'arrival';
-export const TRANSPORTS = ['forms.details.transportationInitialValue', 'forms.details.plane', 'forms.details.train', 'forms.details.bus'];
+export const TRANSPORT_DEFAULT_VALUE = 'forms.details.transportationInitialValue';
+export const TRANSPORTS = [TRANSPORT_DEFAULT_VALUE, 'forms.details.plane', 'forms.details.train', 'forms.details.bus'];

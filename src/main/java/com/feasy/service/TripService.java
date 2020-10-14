@@ -12,6 +12,7 @@ import com.feasy.repository.TripRepository;
 import com.feasy.service.dto.TripDTO;
 import com.feasy.service.mapper.TripTripDTOMapper;
 import com.feasy.service.mapper.TripTripDTOMapperImpl;
+import com.feasy.web.rest.vm.LoginVM;
 
 /**
  * Service class to manage trips
